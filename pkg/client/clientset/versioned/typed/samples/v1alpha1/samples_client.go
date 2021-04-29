@@ -27,6 +27,7 @@ import (
 type SamplesV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	AddressableServicesGetter
+	FactorsGetter
 	SimpleDeploymentsGetter
 }
 
@@ -37,6 +38,10 @@ type SamplesV1alpha1Client struct {
 
 func (c *SamplesV1alpha1Client) AddressableServices(namespace string) AddressableServiceInterface {
 	return newAddressableServices(c, namespace)
+}
+
+func (c *SamplesV1alpha1Client) Factors(namespace string) FactorInterface {
+	return newFactors(c, namespace)
 }
 
 func (c *SamplesV1alpha1Client) SimpleDeployments(namespace string) SimpleDeploymentInterface {

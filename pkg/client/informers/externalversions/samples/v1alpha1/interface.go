@@ -26,6 +26,8 @@ import (
 type Interface interface {
 	// AddressableServices returns a AddressableServiceInformer.
 	AddressableServices() AddressableServiceInformer
+	// Factors returns a FactorInformer.
+	Factors() FactorInformer
 	// SimpleDeployments returns a SimpleDeploymentInformer.
 	SimpleDeployments() SimpleDeploymentInformer
 }
@@ -44,6 +46,11 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 // AddressableServices returns a AddressableServiceInformer.
 func (v *version) AddressableServices() AddressableServiceInformer {
 	return &addressableServiceInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// Factors returns a FactorInformer.
+func (v *version) Factors() FactorInformer {
+	return &factorInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // SimpleDeployments returns a SimpleDeploymentInformer.

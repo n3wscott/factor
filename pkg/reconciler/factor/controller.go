@@ -14,22 +14,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package factor
 
 import (
-	// The set of controllers this controller process runs.
-	"knative.dev/sample-controller/pkg/reconciler/addressableservice"
-	"knative.dev/sample-controller/pkg/reconciler/simpledeployment"
-	"knative.dev/sample-controller/pkg/reconciler/factor"
+	"context"
 
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
+	"knative.dev/pkg/configmap"
+	"knative.dev/pkg/controller"
+	"knative.dev/pkg/logging"
+
+	factorreconciler "knative.dev/sample-controller/pkg/client/injection/reconciler/samples/v1alpha1/factor"
 )
 
-func main() {
-	sharedmain.Main("controller",
-		addressableservice.NewController,
-		simpledeployment.NewController,
-		factor.NewController,
-	)
+// NewController creates a Reconciler and returns the result of NewImpl.
+func NewController(
+	ctx context.Context,
+	cmw configmap.Watcher,
+) *controller.Impl {
+	logger := logging.FromContext(ctx)
+
+	r := &Reconciler{}
+	impl := factorreconciler.NewImpl(ctx, r)
+
+	logger.Info("Setting up event handlers.")
+
+	return impl
 }

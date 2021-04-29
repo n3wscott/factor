@@ -12,3 +12,24 @@ To learn more about Knative, please visit our
 
 If you are interested in contributing, see [CONTRIBUTING.md](./CONTRIBUTING.md)
 and [DEVELOPMENT.md](./DEVELOPMENT.md).
+
+
+
+cat <<EOF | kubectl apply -f -
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: factor-viewer
+  labels:
+    duck.tableflip.dev/results: "true"
+rules:
+- apiGroups:
+  - samples.knative.dev
+  resources:
+  - factors
+  - factors/status
+  verbs:
+  - get
+  - list
+  - watch
+EOF

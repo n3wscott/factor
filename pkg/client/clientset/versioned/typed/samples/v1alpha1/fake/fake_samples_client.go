@@ -32,6 +32,10 @@ func (c *FakeSamplesV1alpha1) AddressableServices(namespace string) v1alpha1.Add
 	return &FakeAddressableServices{c, namespace}
 }
 
+func (c *FakeSamplesV1alpha1) Factors(namespace string) v1alpha1.FactorInterface {
+	return &FakeFactors{c, namespace}
+}
+
 func (c *FakeSamplesV1alpha1) SimpleDeployments(namespace string) v1alpha1.SimpleDeploymentInterface {
 	return &FakeSimpleDeployments{c, namespace}
 }

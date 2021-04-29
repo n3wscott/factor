@@ -26,6 +26,14 @@ type AddressableServiceListerExpansion interface{}
 // AddressableServiceNamespaceLister.
 type AddressableServiceNamespaceListerExpansion interface{}
 
+// FactorListerExpansion allows custom methods to be added to
+// FactorLister.
+type FactorListerExpansion interface{}
+
+// FactorNamespaceListerExpansion allows custom methods to be added to
+// FactorNamespaceLister.
+type FactorNamespaceListerExpansion interface{}
+
 // SimpleDeploymentListerExpansion allows custom methods to be added to
 // SimpleDeploymentLister.
 type SimpleDeploymentListerExpansion interface{}

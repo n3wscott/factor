@@ -20,4 +20,6 @@ package v1alpha1
 
 type AddressableServiceExpansion interface{}
 
+type FactorExpansion interface{}
+
 type SimpleDeploymentExpansion interface{}

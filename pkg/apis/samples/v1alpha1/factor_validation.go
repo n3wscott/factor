@@ -14,22 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package v1alpha1
 
 import (
-	// The set of controllers this controller process runs.
-	"knative.dev/sample-controller/pkg/reconciler/addressableservice"
-	"knative.dev/sample-controller/pkg/reconciler/simpledeployment"
-	"knative.dev/sample-controller/pkg/reconciler/factor"
+	"context"
 
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
+	"knative.dev/pkg/apis"
 )
 
-func main() {
-	sharedmain.Main("controller",
-		addressableservice.NewController,
-		simpledeployment.NewController,
-		factor.NewController,
-	)
+// Validate implements apis.Validatable
+func (as *Factor) Validate(ctx context.Context) *apis.FieldError {
+	return as.Spec.Validate(ctx).ViaField("spec")
+}
+
+// Validate implements apis.Validatable
+func (ass *FactorSpec) Validate(ctx context.Context) *apis.FieldError {
+	return nil
 }
